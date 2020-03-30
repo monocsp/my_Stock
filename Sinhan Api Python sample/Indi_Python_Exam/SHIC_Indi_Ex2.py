@@ -10,6 +10,7 @@ from pandas import Series, DataFrame
 import pandas as pd
 import numpy as np
 
+
 '''
     신한아이 인디 해외주식 예제입니다:
     코드를 입력하시고 Search 버튼을 누르시면
