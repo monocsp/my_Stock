@@ -1,8 +1,8 @@
 import sys
 from PyQt5.QtWidgets import *
-from tkinter import*
-import tkinter.messagebox
+from tkinter import *
 from PyQt5.QAxContainer import *
+
 
 class MyWindow(QMainWindow):
     def __init__(self):
@@ -32,8 +32,10 @@ class MyWindow(QMainWindow):
 
         self.listWidget.addItems(kospi_code_name_list)
         self.listWidget.itemDoubleClicked.connect(self.list_Clicked)
-    def list_Clicked(self):
+
+    def list_clicked(self):
         print(self.listWidget.currentItem().text())
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
