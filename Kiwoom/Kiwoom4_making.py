@@ -7,19 +7,23 @@ from PyQt5.QAxContainer import *
 class MyWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-
         self.kiwoom = QAxWidget("KHOPENAPI.KHOpenAPICtrl.1")
-        self.kiwoom.dynamicCall("CommConnect()")
+
 
         self.setWindowTitle("종목 코드")
         self.setGeometry(300, 300, 500, 300)
+
+        connactionButton = QPushButton("접속하기", self)
+        connactionButton.move(400, 10)
+        connactionButton.resize(100,50)
+        connactionButton.clicked.connect(self.connactionbutton_clicked)
 
         btn1 = QPushButton("종목코드 얻기", self)
         btn1.move(270, 10)
         btn1.clicked.connect(self.btn1_clicked)
 
         self.listWidget = QListWidget(self)
-        self.listWidget.setGeometry(10, 10, 250, 250)
+        self.listWidget.setGeometry(10, 10, 170, 200)
 
     def btn1_clicked(self):
         ret = self.kiwoom.dynamicCall("GetCodeListByMarket(QString)", ["0"])
@@ -35,6 +39,12 @@ class MyWindow(QMainWindow):
 
     def list_clicked(self):
         print(self.listWidget.currentItem().text())
+
+    def connactionbutton_clicked(self):
+        if self.kiwoom.dynamicCall("GetConnectState()") == 0:
+            self.kiwoom.dynamicCall("CommConnect()")
+        else:
+            self.statusBar().showMessage("Already Connected")
 
 
 if __name__ == "__main__":
