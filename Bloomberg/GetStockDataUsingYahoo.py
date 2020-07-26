@@ -23,6 +23,7 @@ if __name__ == '__main__':
     b.create_connection()
     b.create_table('')
     b.insert_dataframe(a)
+    print(a)
 
     print(type(a))
     print(a)

@@ -42,8 +42,11 @@ class DatabaseHandler:
 
     def insert_dataframe(self, dataframe):
 
-        dataframe.to_sql('AB', self.conn, if_exists='replace', index=False)
+        dataframe.to_sql('FB', self.conn, if_exists='replace', index=True)
         self.conn.commit()
+
+    def print_dataframe(self, dataframe):
+        print(dataframe)
 
 if __name__ == '__main__':
     a = DatabaseHandler(os.getcwd())
